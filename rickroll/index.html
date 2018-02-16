@@ -14,7 +14,196 @@
 <div id="lyrics"></div>
 
 <script>
-	// Complete this section and create a CSS file named style.css
+	var video = document.getElementById("rickroll");
+	var caption = document.getElementById("lyrics");
+	video.addEventListener("timeupdate", function() {
+		if (video.currentTime > 18 && video.currentTime < 22) {
+			caption.innerHTML ="<h3>We're no strangers to love</h3>";
+		}
+		else if (video.currentTime > 22 && video.currentTime < 27) {
+			caption.innerHTML = "<h3>You know the rules and so do I</h3>";
+		}
+		else if (video.currentTime > 27 && video.currentTime < 31) {
+			caption.innerHTML = "<h3>A full commitment's what I'm thinking of</h3>";
+		}
+		else if (video.currentTime > 31 && video.currentTime < 34) {
+			caption.innerHTML = "<h3>You wouldn't get this from any other guy</h3>";
+		}
+		else if (video.currentTime > 35 && video.currentTime < 39) {
+			caption.innerHTML = "<h3>I just wanna tell you how I'm feeling</h3>";
+		}
+		else if (video.currentTime > 40 && video.currentTime < 43) {
+			caption.innerHTML = "<h3>Gotta make you understand</h3>";
+		}
+		else if (video.currentTime > 43 && video.currentTime < 44) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 44 && video.currentTime < 47) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 47 && video.currentTime < 51) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 51 && video.currentTime < 53) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 53 && video.currentTime < 55) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 55 && video.currentTime < 60) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+		}
+		else if (video.currentTime > 60 && video.currentTime < 64) {
+			caption.innerHTML = "<h3>We've known each other for so long</h3>";
+		}
+		else if (video.currentTime > 64 && video.currentTime < 66) {
+			caption.innerHTML = "<h3>Your heart's been aching, but</h3>";
+		}
+		else if (video.currentTime > 66 && video.currentTime < 69) {
+			caption.innerHTML = "<h3>You're too shy to say it</h3>";
+		}
+		else if (video.currentTime > 69 && video.currentTime < 72) {
+			caption.innerHTML = "<h3>Inside, we both know what's been going on</h3>";
+		}
+		else if (video.currentTime > 73 && video.currentTime < 77) {
+			caption.innerHTML = "<h3>We know the game and we're gonna play it</h3>";
+		}
+		else if (video.currentTime > 77 && video.currentTime < 82) {
+			caption.innerHTML = "<h3>And if you ask me how I'm feeling</h3>";
+		}
+		else if (video.currentTime > 82 && video.currentTime < 84) {
+			caption.innerHTML = "<h3>Don't tell me you're too blind to see</h3>";
+		}
+		else if (video.currentTime > 85 && video.currentTime < 87) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 87 && video.currentTime < 89) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 89 && video.currentTime < 93) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 93 && video.currentTime < 96) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 96 && video.currentTime < 98) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 98 && video.currentTime < 102) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+		}
+		else if (video.currentTime > 102 && video.currentTime < 104) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 104 && video.currentTime < 106) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 106 && video.currentTime < 110) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 110 && video.currentTime < 112) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 112 && video.currentTime < 115) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 115 && video.currentTime < 119) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+		}
+		else if (video.currentTime > 119 && video.currentTime < 128) {
+			caption.innerHTML = "<h3>(Ooh, give you up)</h3>";
+		}
+		else if (video.currentTime > 128 && video.currentTime < 130) {
+			caption.innerHTML = "<h3>Never gonna give, never gonna give</h3>";
+		}
+		else if (video.currentTime > 130 && video.currentTime < 132) {
+			caption.innerHTML = "<h3>(Give you up)</h3>";
+		}
+		else if (video.currentTime > 132 && video.currentTime < 134) {
+			caption.innerHTML = "<h3>Never gonna give, never gonna give</h3>";
+		}
+		else if (video.currentTime > 134 && video.currentTime < 136) {
+			caption.innerHTML = "<h3>(Give you up)</h3>";
+		}
+		else if (video.currentTime > 136 && video.currentTime < 140) {
+			caption.innerHTML = "<h3>We've known each other for so long</h3>";
+		}
+		else if (video.currentTime > 140 && video.currentTime < 143) {
+			caption.innerHTML = "<h3>Your heart's been aching, but</h3>";
+		}
+		else if (video.currentTime > 143 && video.currentTime < 145) {
+			caption.innerHTML = "<h3>You're too shy to say it</h3>";
+		}
+		else if (video.currentTime > 145 && video.currentTime < 148) {
+			caption.innerHTML = "<h3>Inside, we both know what's been going on</h3>";
+		}
+		else if (video.currentTime > 149 && video.currentTime < 153) {
+			caption.innerHTML = "<h3>We know the game and we're gonna play it</h3>";
+		}
+		else if (video.currentTime > 153 && video.currentTime < 158) {
+			caption.innerHTML = "<h3>I just wanna tell you how I'm feeling</h3>";
+		}
+		else if (video.currentTime > 158 && video.currentTime < 160) {
+			caption.innerHTML = "<h3>Gotta make you understand</h3>";
+		}
+		else if (video.currentTime > 161 && video.currentTime < 163) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 163 && video.currentTime < 165) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 165 && video.currentTime < 167) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 169 && video.currentTime < 172) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 172 && video.currentTime < 174) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 174 && video.currentTime < 178) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+		}
+		else if (video.currentTime > 178 && video.currentTime < 180) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 180 && video.currentTime < 182) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 182 && video.currentTime < 186) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 186 && video.currentTime < 188) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 188 && video.currentTime < 191) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 191 && video.currentTime < 195) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+			}
+		else if (video.currentTime > 195 && video.currentTime < 197) {
+			caption.innerHTML = "<h3>Never gonna give you up</h3>";
+		}
+		else if (video.currentTime > 197 && video.currentTime < 199) {
+			caption.innerHTML = "<h3>Never gonna let you down</h3>";
+		}
+		else if (video.currentTime > 199 && video.currentTime < 203) {
+			caption.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+		}
+		else if (video.currentTime > 203 && video.currentTime < 205) {
+			caption.innerHTML = "<h3>Never gonna make you cry</h3>";
+		}
+		else if (video.currentTime > 205 && video.currentTime < 208) {
+			caption.innerHTML = "<h3>Never gonna say goodbye</h3>";
+		}
+		else if (video.currentTime > 208 && video.currentTime < 212) {
+			caption.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+		}
+		else if (video.currentTime > 212){
+			caption.innerHTML = "<h3>Thanks for watching!</h3";
+		}
+	}, false);	
 </script>
 </body>
 </html>	
