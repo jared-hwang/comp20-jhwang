@@ -1,0 +1,26 @@
+body {
+	background-color: green;
+	font-family: "Papyrus";
+	color: yellow;
+}
+
+h1 {
+	color: yellow;
+	text-align: center;
+	font-family: "Papyrus";
+}
+
+h3 {
+	color: yellow;
+	text-align: center;
+	font-family: "Papyrus";
+	font-size: 25px;
+	border-style: outset;
+	border-color: orange;
+	border-width: 5px;
+}
+
+video {
+	display: block;
+	margin: auto;
+}
