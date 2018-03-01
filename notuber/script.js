@@ -13,14 +13,17 @@ function getLocation() {
 }
 
 function createMap() {
-	map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
-		center: {lat: mylat, lng: mylng}
-	});
+	 map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: mylat, lng: mylng},
+          zoom: 18
+     });
 }
-
 function isPassenger(passengerData){
-	
+	var marker = new google.maps.Marker({
+		position: {lat: mylat, lng: mylng},
+		map: map,
+		
+	})
 
 }
 
