@@ -1,5 +1,12 @@
 #map {
 	height: 100%;
+	width: 80%;
+	float: right;
+}
+
+#infowindow {
+	float: left;
+	width: 20%;
 }
 
 html, body {
