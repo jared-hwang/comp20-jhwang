@@ -120,7 +120,7 @@ function isVehicle(passengerData) {
 		passengerMarkers[i] = new google.maps.Marker({
 			position: {lat: passengerData[i].lat, lng: passengerData[i].lng},
 			map: map,
-			icon: car,
+			icon: passenger,
 			username: passengerData[i].username,
 			distanceAway: haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat])
 		});
@@ -157,7 +157,7 @@ function getData(){
 			if ("vehicles" in passengerData){
 				isPassenger(passengerData["vehicles"]);
 			} else if ("passengers" in passengerData){
-				ifVehicle(passengerData["passengers"]);
+				isVehicle(passengerData["passengers"]);
 			}
 
 		}
