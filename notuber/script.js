@@ -91,7 +91,9 @@ function isPassenger(passengerData){
 		map: map,
 		icon: me
 	});
-	meInfo.open(map, marker);
+	google.maps.event.addListener(marker, 'click', function() {
+		meInfo.open(map, marker);
+	});
 }
 
 function isVehicle(passengerData) {
@@ -137,7 +139,9 @@ function isVehicle(passengerData) {
 		map: map,
 		icon: me
 	});
-	meInfo.open(map, marker);
+	google.maps.event.addListener(marker, 'click', function() {
+		meInfo.open(map, marker);
+	});
 
 }
 

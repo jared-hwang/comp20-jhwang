@@ -7,11 +7,18 @@
 #infowindow {
 	float: left;
 	width: 20%;
+
+}
+
+#header {
+	text-align: center;
 }
 
 html, body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	background-color: #33D1FF;
+	font-family: "Helvetica Neue";
 }
 
