@@ -7,8 +7,26 @@
     <title>Captain's Log</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        
+    <script> 
+        function reload() {
+            for (var i = 0; i < localStorage.length; i++){
+                var numMilli = localStorage.key(i);
+                milliseconds = new Date(parseInt(numMilli));
+                $("#log").prepend("<p>" + milliseconds.toDateString() + " " + milliseconds.toTimeString() + " - " + localStorage.getItem(localStorage.key(i)));
+            }
+        }
+        var temp;
+        var currTime;
+        var value;
+        $(document).ready(function(){
+            reload();
+            $("#msg").change(function(){
+                currTime = new Date();
+                value = $("#msg").val();
+                localStorage.setItem(currTime.getTime(), value);
+                $("#log").prepend("<p>" + currTime.toDateString() + " " + currTime.toTimeString() + " - " + value);
+            }); 
+        });
     </script>
 </head>
 
