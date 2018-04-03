@@ -7,7 +7,6 @@ function haversineDistance(coords1, coords2, isMiles) {
   function toRad(x) {
     return x * Math.PI / 180;
   }
-
   var lon1 = coords1[0];
   var lat1 = coords1[1];
 
@@ -64,19 +63,20 @@ function isPassenger(passengerData){
 	myLocation = [mylng, mylat];
 
 	var vehicleMarkers = [];
-
-	firstCar = [passengerData[0].lng, passengerData[0].lat];
-	distance = haversineDistance(myLocation, firstCar, true);
-	for (i = 0; i < passengerData.length; i++) {
-		if (haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat]) < distance) {
-			distance = haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat]);
+	if (passengerData.length > 0){
+		firstCar = [passengerData[0].lng, passengerData[0].lat];
+		distance = haversineDistance(myLocation, firstCar, true);
+	}
+	for (i = 0; i < passengerData.length; i++) { 
+		if (haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true) < distance) {
+			distance = haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true);
 		}
 		vehicleMarkers[i] = new google.maps.Marker({
 			position: {lat: passengerData[i].lat, lng: passengerData[i].lng},
 			map: map,
 			icon: car,
 			username: passengerData[i].username,
-			distanceAway: haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat])
+			distanceAway: haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true)
 		});
 		google.maps.event.addListener(vehicleMarkers[i], 'click', function(){
 				document.getElementById('printInfo').innerHTML = "<h3>Name: " + this.username + "</h3>" + "<p>Distance Away: " + this.distanceAway + " miles</p>" +document.getElementById('printInfo').innerHTML;
@@ -112,20 +112,23 @@ function isVehicle(passengerData) {
 	distance = 0;
 	var passengerMarkers = [];
 	myLocation = [mylng, mylat];
-
-	firstRider = [passengerData[0].lng, passengerData[0].lat];
-	distance = haversineDistance(myLocation, firstRider, true);
+	if (passengerData.length > 0){
+		firstRider = [passengerData[0].lng, passengerData[0].lat];
+		distance = haversineDistance(myLocation, firstRider, true);
+	}
 	for (i = 0; i < passengerData.length; i++) {
-		if (haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat]) < distance) {
-			distance = haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat]);
+		console.log("lng: " + passengerData[i].lng + "lat: " + passengerData[i].lat);
+		if (haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true) < distance) {
+			distance = haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true);
 		}
 		passengerMarkers[i] = new google.maps.Marker({
 			position: {lat: passengerData[i].lat, lng: passengerData[i].lng},
 			map: map,
 			icon: passenger,
 			username: passengerData[i].username,
-			distanceAway: haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat])
+			distanceAway: haversineDistance(myLocation, [passengerData[i].lng, passengerData[i].lat], true)
 		});
+
 		google.maps.event.addListener(passengerMarkers[i], 'click', function(){
 				document.getElementById('printInfo').innerHTML = "<h3>Name: " + this.username + "</h3>" + "<p>Distance Away: " + this.distanceAway + " miles</p>" +document.getElementById('printInfo').innerHTML;
 		});
@@ -149,7 +152,7 @@ function getData(){
 
 	var params = "username="+USERNAME+"&lat="+mylat+"&lng="+mylng;
 	request = new XMLHttpRequest();
-	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
+	request.open("POST", "https://frozen-reef-18895.herokuapp.com/rides", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	request.onreadystatechange = function () {
