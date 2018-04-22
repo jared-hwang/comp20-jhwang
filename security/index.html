@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>Assignment 4</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<h1>Introduction</h1>
+	<p>I have been hired as a security consultant to analyze and evalate the security of Ben Solomon's notuber client side and server side application. This application is a ride sharing service. Users are assigned a username that identifies them as a passenger or a vehicle. Upon visiting the client side page, a google maps object appears with the locations of all the passengers/vehicles in the world. On the server side, the server takes in the username, latitude, and longitude of the user, and logs it within the server. The server also offers a /vehicle.json post route, where one can see the passenger/vehicle with that a username, and a '/' get route, where one can see a list of all passengers and vehicles. It was my job to find security flaws within his program.</p>
+
+<h1>Methodology</h1>
+	<p>Firstly, I did a black box survey of the application. I saw what functionality the program offered, saw how the user could interact with the program, and saw what they were able to control/see regarding the program. Then, I tested out the various actions that the user could perform: prodding and poking at the limits of what I was allowed to do. After doing that, I did a white box survey where I looked at the source code to see potential vulnerabilities in the code regarding bad practice, hardcoding, etc.</p>
+
+<h1>Abstract</h1>
+	<p>I have found and described three security issues in the following document. The first is what is called "cross site scripting." What this means is that at some point, a user is allowed to send in data - typically their username, latitude, longitude, the like. However, this means they can send code in place of their actual username. Then, when this "username" gets displayed on the page later on, the code gets run on whoever accessed the page. This means, that for this app, if someone were to "inject" code into the page, a user later on could have malicious code run on their machine. The second vulnerability I identifed was an issue of privacy. That is, for every user on the program, any other person with a browser can see their exact location on the planet, as well as their time of access. This results in unideal situations where one can track users against their will. The third vulnerability came mostly down to issues of authentication and improper storage of data. Without a proper system of identifying users, anyone can pretend to be anyone else. Furthermore, in the program, if anyone gets access to the database or the code, one can see the location/username data of any user OR vehicle as that information has just been written straight in the code. These three issues range from extremely dangerous, to of medium concern, and all should be fixed promptly to have a secure program.</p>
+
+	<h1>Issues Found</h1>
+	<ol>
+		<li>Cross site scripting vulnerability</li>
+			<ul>
+				<li>Issue</li>
+					<p>This is a code injection; this problem allows people to inject any code they want into the page.</p>
+				<li>Location</li>
+					<p>The user may inject code through POST in the /rides path, and the results of the code injection can be seen through the '/' path.</p>
+				<li>Severity</li>
+					<p>EXTREMELY HIGH SEVERITY. This is an extremely serious problem that plagues many pages even in the professional industry. This vulnerability allows a user to submit arbitrary lines of code into the database, which will then be displayed when ANY user accesses the home page path. One can inject anything as innocent as a new line break, to installing further malicious code onto a user's machine. It is important to note that code gets run on EVERY user's machine who accesses that page from that point on. In this particular case, the page now redirects to downloadmoreram.com</p>
+				<li>Description</li>
+					<p>As stated, now when anyone accesses the home page, this code will be run on their page. One can easily imagine a situation where the user scrapes and sends data back to a hub, or installs malicious hardware on someone's computer. This was found merely by considering the functions of the code, and what you can do with it. It seems dubious that the user can submit a username, and have that username easily print to the page - a classic XSS hotbed. A before and after is posted below.</p>
+				<li>Proof</li>
+					<img src="xss_before.png" alt="Before the site was attacked. Innocent page" style="width:500px;height:160;">
+					<img src="xss_now.png" alt="After the site was attacked. Potentially malicious page" style="width:500px;height:160px;">
+				<li>Resolution</li>
+					<p>One relatively straightforward fix is to clean the input before inserting it into the database - removing all non letter characters or something similar. If you run [string] = [string].replace(/[^\w\s]/gi,''); on the input first, it will remove special characters and leave the potentially malicious code input benign.</p>
+			</ul>
+		<li>Privacy concern</li>
+		<ul>
+			<li>Issue</li>
+				<p>This is a potential privacy issue. The creator of this page should reconsider the design and functions of this page, and what a user should be allowed to see.</p>
+			<li>Location</li>
+				<p>This is an issue that can be found on both the list on the home page, as well as on the /vehicle.json path.</p>
+
+			<li>Description</li>
+				<p>On either the home page, or the /vehicle.json get path, one can see detailed information about users of the service. On the home page, one can see the username, time of access, and geographical location in latitude and longitude of EVERY USER of the program. On the vehicle.json page, one can search for a specific vehicle in the database, and if the vehicle exists, it will show the exact location, again in latitude and longitude, of the user. This was found merely by navigating the pages available to the user. See below a screenshot of the home page.</p> <p></p>
+				<img src="xss_before.png" alt="the home page of the server. Can see exact locations of users" style="width:500px;height:200;">
+			<li>Severity</li>
+				<p>Relatively high severity. This issue comes down to what should users of your program (which is potentially anyone in the world given the design of the site) should be allowed to see about the other users on the program. It is 
+				generally very dubious for anyone to see the positions, names, and times of access of any user on the entire database. Other than generally uncomfortable privacy issues related to this, consider a situation where a stalker is attempting to discern the location of some victim. By constantly tracking the location of the user and where they go (because, in the end, it IS a ride sharing service), anyone can map out details about the user such as where they live, what their daily habits are, where they are at any given moment. This is a serious privacy issue, and does not sit well with most users.</p>
+			<li>Proof</li>
+				<p>Proof lies in the screenshot above. This is simply the home page that literally anyone with a web browser can access.</p>
+			<li>Resolution</li>
+				<p>Consider removing this functionality from the server. This kind of information should not be available to the general public. Alternatively, implement some authorization function such that only people who need to know the positions of users (such as a vehicle looking for a passenger, or the passenger themself) can see their location/other data.</p>
+		</ul>
+		<li>More privacy and data storage concerns/bad practice</li>
+		<ul>
+			<li>Issue</li>
+				<p>Throughout this program, there are several issues of bad practice and improper storage that I have lumped into one concern. </p>
+			<li>Location</li>
+				<p>The vehicle names are hardcoded in the index.js file. The storing of the user data also occurs in the index.js file. The masquerading can occur at any point in the usage of the program.</p>
+			<li>Description</li>
+				<p>For one, the programmer has hardcoded the names of all the vehicles in plaintext in the server code. Second, all of the data in the server is stored in plaintext. Third, there is no authentication whatsoever, allowing any user to masquerade as any user.</p>
+			<li>Severity</li>
+				<p>Medium. While this is in fact an issue, it is not as severe as something like XSS, where any user can freely run code on other people's computers. However, it is a reasonable concern that access to the code of this program would allow someone to a) know the username of all vehicles, and by extension know their locations because of the prior discussed vulnerability, b) if someone were to gain access to the database, the same problems described above apply here, and c) even if these surface issues were solved, there's no authentication, so anyone can masquerade as anyone else just due to the design of the program. So, this is a medium severity problem, and should be fixed promptly.</p>
+			<li>Proof</li>
+				<img src="vehicles.png" alt="hardcoded vehicle names" style="width:500px;height:200;">
+				<img src="storing.png" alt="Where the information is stored in plaintext" style="width:500px;height:200;">
+			<li>Resolution</li>
+				<p>Consider not hardcoding the vehicles. Or, maybe hash them and store them hashed, then when comparing user input, compare it using the hash function. Same thing with the data. Consider hashing the usernames so that access to the database doesn't result in knowing the exact names of everyone. Also, consider implementing an authentication system so that not anyone can log in as anyone else without any passwords, registration, or anything.</p>		
+		</ul>
+	</ol>
+<h1>Conclusion</h1>
+	<p>In the future, please reconsider the way you work with user data. In addition to who is allowed to see what, please fix how you store data, especially so that even if you don't outright allow someone to see arbitrary data, if they somehow still gain access they aren't able to see whatever they like about users of the program. This does not come at an extremely high cost - just redesigning the code slightly, and perhaps using a hash function to keep it more secure. A more cost intensive recommendation would be implementing a proper authentication system that will prevent arbitrary users to register as any other person. This will require a serious system and much time. Also, in the future, please be careful on what users are allowed to submit with either GET or POST. In any case where a user is allowed to submit data, please clean it beforehand as to prevent cross site scripting vulnerabilities.</p>
+
+<h1>References</h1>
+
+<a href="https://www.sans.org/top25-software-errors/">sans.org</a>
+<p></p>
+<a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">Owasp top 10</a>
+<p></p>
+<a href="https://www.w3schools.com/">W3 Schools</a>
+
+</body>
+
+</html>
